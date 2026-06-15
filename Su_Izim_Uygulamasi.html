@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Su İzim</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:900px;margin:auto;padding:20px;background:#f4fbff}
+.card{background:white;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+h1{color:#0a6c8e}
+table{width:100%;border-collapse:collapse}
+td,th{padding:8px;border:1px solid #ddd}
+input{width:100%;padding:6px}
+button{padding:10px 20px;font-size:16px;cursor:pointer}
+.result{margin-top:20px;padding:15px;background:#eef9ff;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>💧 Su İzim - Su Ayak İzi Hesaplayıcı</h1>
+
+<table>
+<tr><th>Faaliyet</th><th>Miktar</th></tr>
+<tr><td>Duş Süresi (dk)</td><td><input id="dus" type="number" value="10"></td></tr>
+<tr><td>Diş Fırçalama (kez)</td><td><input id="dis" type="number" value="2"></td></tr>
+<tr><td>El Yıkama (kez)</td><td><input id="el" type="number" value="8"></td></tr>
+<tr><td>Tuvalet Kullanımı (kez)</td><td><input id="tuvalet" type="number" value="5"></td></tr>
+<tr><td>İçme Suyu (L)</td><td><input id="icme" type="number" value="2"></td></tr>
+<tr><td>Diğer Kullanım (L)</td><td><input id="diger" type="number" value="10"></td></tr>
+</table>
+
+<br>
+<button onclick="hesapla()">HESAPLA</button>
+
+<div id="sonuc" class="result"></div>
+</div>
+
+<script>
+function hesapla(){
+ let toplam =
+ (Number(document.getElementById('dus').value)*10)+
+ (Number(document.getElementById('dis').value)*2)+
+ (Number(document.getElementById('el').value)*1)+
+ (Number(document.getElementById('tuvalet').value)*6)+
+ (Number(document.getElementById('icme').value))+
+ (Number(document.getElementById('diger').value));
+
+ let seviye="Düşük";
+ let yorum="Harika! Su tasarrufu konusunda bilinçlisiniz.";
+
+ if(toplam>120){
+   seviye="Orta";
+   yorum="Su kullanımınızı biraz daha azaltabilirsiniz.";
+ }
+ if(toplam>200){
+   seviye="Yüksek";
+   yorum="Duş süresini azaltarak ve muslukları kapatarak tasarruf sağlayabilirsiniz.";
+ }
+
+ document.getElementById("sonuc").innerHTML=
+ `<h2>Sonuçlar</h2>
+ <p><b>Günlük Su Tüketimi:</b> ${toplam.toFixed(0)} litre</p>
+ <p><b>Seviye:</b> ${seviye}</p>
+ <p><b>Öneri:</b> ${yorum}</p>`;
+}
+</script>
+</body>
+</html>
